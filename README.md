@@ -38,7 +38,7 @@ This project is a single-page application for an email client. The application f
       git clone https://github.com/sashalai64/cs50web-mail.git
       ```
       
-2. Apply migrations:
+2. **Apply migrations**
     ```
     python manage.py makemigrations mail
     ```
