@@ -51,7 +51,8 @@ function load_mailbox(mailbox) {
       <p>${email.timestamp}</p>`;
 
       //change background color, grey if read, red if not
-      div.style.backgroundColor = email.read ? '#D3D3D3' : '#FFFFFF';
+      console.log(`Email ID: ${email.id}, Read: ${email.read}`);
+      div.style.backgroundColor = email.read ? '#D3D3D3' : '#FF0000';
 
       // add listener and append to DOM
       div.addEventListener('click', () => {
@@ -91,14 +92,14 @@ function view_email(id) {
 
     //reply
     const replyButton = document.createElement('button');
-    replyButton.className = 'btn btn-sm btn-outline-primary'
+    replyButton.className = "btn btn-sm btn-outline-primary";
     replyButton.innerHTML ='Reply';
     replyButton.addEventListener('click', () => reply_email(id));
     document.querySelector('#email-detail-view').append(replyButton);
 
     //archive
     const archiveButton = document.createElement('button');
-    archiveButton.className = 'btn btn-sm btn-outline-primary'
+    archiveButton.className = "btn btn-sm btn-outline-primary";
     archiveButton.innerHTML = email.archived ? 'Unarchived' : 'Archive';
     archiveButton.addEventListener('click', () => archive_email(id, email.archived));
     document.querySelector('#email-detail-view').append(archiveButton);
