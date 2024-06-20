@@ -44,11 +44,11 @@ function load_mailbox(mailbox) {
     //create div for each email
     emails.forEach(email => {
       const div = document.createElement('div');
-      div.className = 'card-body mt-3';
+      div.className = 'card card-body mt-3';
       div.innerHTML = `
-      <h6>Sender: ${email.sender}</h6>
-      <h5 >Subject: ${email.subject}</h5>
-      <p>${email.timestamp}</p>`;
+      <h6>From: ${email.sender}</h6>
+      <h5>Subject: ${email.subject}</h5>
+      <p class="timestamp">${email.timestamp}</p>`;
 
       //change background color, grey if read, red if not
       console.log(`Email ID: ${email.id}, Read: ${email.read}`);

@@ -18,3 +18,10 @@ textarea {
 .btn {
     margin: 3px;
 }
+
+.timestamp {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 0.85em; 
+    color: rgb(81, 79, 79);
+}
