@@ -12,7 +12,7 @@ This project is a single-page application for an email client. The application f
    - On successful sending, the user is redirected to their Sent mailbox.
 
 - **Mailbox Views**
-   - Users can view their Inbox, Sent, and Archived emails.
+   - Users can view their **Inbox**, **Sent**, and **Archived** emails.
    - Each email is displayed in a box showing the sender, subject, and timestamp.
    - Read emails are displayed with a gray background, while unread emails are displayed with a red background.
 
