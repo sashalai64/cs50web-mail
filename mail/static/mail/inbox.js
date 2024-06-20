@@ -26,7 +26,7 @@ function compose_email() {
   document.querySelector('#compose-body').value = '';
 }
 
-
+//load mailbox
 function load_mailbox(mailbox) {
   
   // Show the mailbox and hide other views
@@ -44,10 +44,10 @@ function load_mailbox(mailbox) {
     //create div for each email
     emails.forEach(email => {
       const div = document.createElement('div');
-      div.className = 'card-body';
+      div.className = 'card-body mt-3';
       div.innerHTML = `
       <h6>Sender: ${email.sender}</h6>
-      <h5>Subject: ${email.subject}</h5>
+      <h5 >Subject: ${email.subject}</h5>
       <p>${email.timestamp}</p>`;
 
       //change background color, grey if read, red if not
@@ -63,13 +63,14 @@ function load_mailbox(mailbox) {
   )
 }
 
-
+//view email
 function view_email(id) {
 
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'none';
   document.querySelector('#email-detail-view').style.display = 'block';
 
+  //get email with id
   fetch(`/emails/${id}`)
   .then(response => response.json())
   .then(email => {
@@ -84,20 +85,20 @@ function view_email(id) {
 
     //display email detail
     document.querySelector('#email-detail-view').innerHTML = `
-      <p><b>From:</b>${email.sender}</p>
-      <p><b>To:</b>${email.recipients}</p>
-      <p><b>Subject:</b>${email.subject}</p>
-      <p><b>Timestamp:</b>${email.timestamp}</p>
-      <p>${email.body}</p>`;
+      <p><b>From: </b>${email.sender}</p>
+      <p><b>To: </b>${email.recipients}</p>
+      <p><b>Subject: </b>${email.subject}</p>
+      <p><b>Timestamp: </b>${email.timestamp}</p>
+      <p>${email.body.replace(/\n/g, '<br>')}</p>`;
 
-    //reply
+    //reply button
     const replyButton = document.createElement('button');
     replyButton.className = "btn btn-sm btn-outline-primary";
     replyButton.innerHTML ='Reply';
     replyButton.addEventListener('click', () => reply_email(id));
     document.querySelector('#email-detail-view').append(replyButton);
 
-    //archive
+    //archive button
     const archiveButton = document.createElement('button');
     archiveButton.className = "btn btn-sm btn-outline-primary";
     archiveButton.innerHTML = email.archived ? 'Unarchived' : 'Archive';
@@ -106,7 +107,7 @@ function view_email(id) {
   })
 }
 
-
+//reply email
 function reply_email(id) {
   compose_email();
 
@@ -119,7 +120,7 @@ function reply_email(id) {
       email.subject = 'RE: ' + email.subject;
     }
     document.querySelector('#compose-subject').value = email.subject;
-    document.querySelector('#compose-body').value = `On ${email.timestamp}, ${email.sender} wrote: ${email.body}`;
+    document.querySelector('#compose-body').value = `On ${email.timestamp}, ${email.sender} wrote: \n\n${email.body.replace(/\n/g, '\n> ')}`;
   });
 }
 
