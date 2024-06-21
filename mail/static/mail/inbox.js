@@ -46,8 +46,8 @@ function load_mailbox(mailbox) {
       const div = document.createElement('div');
       div.className = 'card card-body mt-3';
       div.innerHTML = `
-      <h6>From: ${email.sender}</h6>
-      <h5>Subject: ${email.subject}</h5>
+      <p class="sender">${email.sender}</p>
+      <p class="subject">${email.subject}</p>
       <p class="timestamp">${email.timestamp}</p>`;
 
       //change background color, grey if read, red if not
@@ -89,21 +89,24 @@ function view_email(id) {
       <p><b>To: </b>${email.recipients}</p>
       <p><b>Subject: </b>${email.subject}</p>
       <p><b>Timestamp: </b>${email.timestamp}</p>
-      <p>${email.body.replace(/\n/g, '<br>')}</p>`;
+      <div id="email-buttons"></div>
+      <div><hr>
+      <p>${email.body.replace(/\n/g, '<br>')}</p>
+      </div>`;
 
     //reply button
     const replyButton = document.createElement('button');
     replyButton.className = "btn btn-sm btn-outline-primary";
     replyButton.innerHTML ='Reply';
     replyButton.addEventListener('click', () => reply_email(id));
-    document.querySelector('#email-detail-view').append(replyButton);
+    document.querySelector('#email-buttons').append(replyButton);
 
     //archive button
     const archiveButton = document.createElement('button');
     archiveButton.className = "btn btn-sm btn-outline-primary";
     archiveButton.innerHTML = email.archived ? 'Unarchived' : 'Archive';
     archiveButton.addEventListener('click', () => archive_email(id, email.archived));
-    document.querySelector('#email-detail-view').append(archiveButton);
+    document.querySelector('#email-buttons').append(archiveButton);
   })
 }
 

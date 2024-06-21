@@ -7,21 +7,45 @@ textarea {
 }
 
 .card-body {
-    transition: transform 0.3s ease;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    height: 80px;
     border-radius: 3ex;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .card-body:hover {
+    transition: transform 0.3s ease;
     transform: translateY(-5px);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sender {
+    font-size: 15px;
+    font-weight: bold;
+    position: absolute;
+    top: 26px;
+    left: 20px;
+  }
+
+.subject {
+    font-size: 20px;
+    position: absolute;
+    top: 22px;
+    left: 200px;
+}
+
+.timestamp { 
+    text-align: center;
+    font-size: 0.85em; 
+    color: rgb(81, 79, 79);
+    position: absolute;
+    top: 27px;
+    right: 20px;
 }
 
 .btn {
     margin: 3px;
-}
-
-.timestamp {
-    margin-top: 5px;
-    margin-bottom: 0px;
-    font-size: 0.85em; 
-    color: rgb(81, 79, 79);
 }
